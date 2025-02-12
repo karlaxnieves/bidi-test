@@ -1,5 +1,5 @@
 ---
-title: mdx invalid
+title: Destination Dimensions - Group Rule
 deprecated: false
 hidden: false
 metadata:
