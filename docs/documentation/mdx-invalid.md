@@ -5,114 +5,281 @@ hidden: false
 metadata:
   robots: index
 ---
-Lingohub supports *Android* `.xml` files, which are used to localize Android applications.
+<HTMLBlock>{`
+<iframe class="vidyard_iframe" title="Dimensions Module - Group Rule" src="//play.vidyard.com/vwL7Sid3MwuVJdvvXnYAhJ.html?" width="800" height="400" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+`}</HTMLBlock>
 
-Lingohub offers a tight coupling between [Apple iOS](doc:apple-ios) and Android projects to speed up your multi-mobile development. You must create one of these projects and export the translated resource files in another format.
+<br />
 
-# Format
+***
 
-* this format is based on *XML*
-* Lingohub supports `string, string-array, and plurals` elements
-* comments can be specified using *XML* syntax and will be assigned to the following key/value pair
-* syntax for placeholders can be found [here](http://developer.android.com/reference/java/util/Formatter.html)
+## Group Rule Overview
 
-# Example
+The “Group” rule lets you define the exact logic you want to drive a particular Dimension element. It’s probably the most commonly used rule both because of it’s usefulness and simplicity.
 
-Additional example files can be accessed [here](https://github.com/lingohub/Example-Resource-Files/tree/master/Android).
+If we revisit the example from the Dimension Introduction section, you’ll see a number of “Group” rules.  The topmost example being:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<resources>
-  <string name="deutscher string">actually german: muss grösser gleich %d sein</string>
-  <string name="escaped quotes">Logged in as \"%s\"</string>
-  <string name="escaped single quotes">Logged in as \'%s\'</string>
-  
-  <string name="surrounded quotes">"Logged in as '%s'"</string>
-  <string name="surrounded quotes escaped">"Logged in as \'%s\'"</string>
-
-  <!-- single line comment -->
-  <string name="two placeholder newline">Hello %s!\nYou have got %s unread messages.</string>
-               <!-- multi
-               line -->
-  <!-- comment -->
-  <string name="with html content"><i>left</i></string>
-
-  <!-- string-array comment -->
-  <string-array name="planets_array">
-    <item>Mercury</item>
-    <!-- Venus comment -->
-    <item>Venus</item>
-    <item>Earth</item>
-    <!-- Mars comment -->
-    <item>Mars</item>
-  </string-array>
-
-  <string-array name="months">
-    <item>January</item>
-    <item>February</item>
-    <item>March</item>
-    <item>April</item>
-    <item>May</item>
-    <item>Jun</item>
-    <item>July</item>
-    <item>August</item>
-    <item>September</item>
-    <item>October</item>
-    <item>November</item>
-    <item>December</item>
-  </string-array>
-
-  <!-- strings quantity comment -->
-  <plurals name="numberOfSongsAvailable">
-    <!-- one comment -->
-    <item quantity="one">Znaleziono jedną piosenkę.</item>
-    <item quantity="few">Znaleziono %d piosenki.</item>
-    <!-- other comment -->
-    <item quantity="other">Znaleziono %d piosenek.</item>
-  </plurals>
-
-</resources>
+```yaml
+  Lineitem_Type:
+    Name: Lineitem Type
+    Rules:
+      - Type: Group
+        Name: Support
+        Conditions:
+          - Source: Service
+            Equals: OCBPremiumSupport
 ```
 
+```Text LOGIC EQUIVALENCY
+IF Source:Service = “OCBPremiumSupport” THEN “Support”
+```
+
+Every “Group” rule you create will match the syntax above, albeit the element you’re creating and the the logic will change.  The most common problems people run into, beyond syntax, are:
+
+1. YAML spacing issues (the spacing must look like the above)
+2. How to define more complex logic; the most common need is to define an AND
+
+When defining more complex logic within the “Conditions” section, you need to remember that the AND/OR/NOT needs to come before/above the logic it’s describing.  Let’s say I wanted to implement the following logic:
+
+```Text LOGIC EQUIVALENCY
+IF Source:Service = “OCBPremiumSupport” AND Source:Account = “123456789012” THEN “Support”
+```
+
+You see how when I write it out (or speak it) the AND comes between the two conditions?  You need to be careful because that’s **not** how it’s implemented in the configuration:
+
+```yaml
+  Lineitem_Type:
+    Name: Lineitem Type
+    Rules:
+      - Type: Group
+        Name: Support
+        Conditions:
+          - And:
+            - Source: Service
+              Equals: OCBPremiumSupport
+            - Source: Account
+              Equals: 123456789012
+```
+
+What if we wanted the following logic:
+
+```Text LOGIC EQUIVALENCY
+IF Source:Service = “OCBPremiumSupport” AND Source:Account != “123456789012” THEN “Support”
+```
+
+```yaml
+  Lineitem_Type:
+    Name: Lineitem Type
+    Rules:
+      - Type: Group
+        Name: Support
+        Conditions:
+          - And:
+            - Source: Service
+              Equals: OCBPremiumSupport
+            - Not:
+              - Source: Account
+                Equals: 123456789012
+```
+
+> 📘 The condition always comes before/above the logic it’s describing!
+
+### Scenarios
+
+#### Scenario 1 - Your finance team has a spreadsheet where they map account to products for reporting
+
+Here’s a sample from the spreadsheet:
+
+| Account      | Product   |
+| :----------- | :-------- |
+| 931830288929 | Product A |
+| 061190967865 | Product B |
+| 618180337335 | Product C |
+| 975482736046 | Product B |
+| 767428711162 | Product B |
+
+You can easily build a Product dimension in CloudZero using the “Group” rule:
+
+```yaml
+  Product:
+    Name: Product
+    Rules:
+      - Type: Group
+        Name: Product A
+        Conditions:
+          - Source: Account
+            Equals: 931830288929
+      - Type: Group
+        Name: Product B
+        Conditions:
+          - Source: Account
+            Equals: 061190967865
+      - Type: Group
+        Name: Product C
+        Conditions:
+          - Source: Account
+            Equals: 618180337335
+      - Type: Group
+        Name: Product B
+        Conditions:
+          - Source: Account
+            Equals: 975482736046
+      - Type: Group
+        Name: Product B
+        Conditions:
+          - Source: Account
+            Equals: 767428711162
+```
+
+> 📘 Whenever you’re referencing “Account” as a source with AWS data, you need to remember that all data in CloudZero is represented as a string (even though spreadsheets will convert numeric data to numbers).  AWS Accounts are always padded to 12 digits with leading 0’s.  In the example above,  “61190967865” becomes “061190967865”
+
+The CostFormation above can be optimized in 2 ways:
+
+1. If you find yourself referencing the same source over and over again, CostFormation allows you to define one source in the header section to be the default for the dimension
+2. If there are different rules for the same element, these can often be collapsed (assuming it still achieves the logic you want)
+
+An optimized form of the dimension above would be:
+
+```yaml
+  Product:
+    Name: Product
+    Source: Account
+    Rules:
+      - Type: Group
+        Name: Product A
+        Conditions:
+          - Equals: 931830288929
+      - Type: Group
+        Name: Product B
+        Conditions:
+          - Source: Account
+            Equals: [061190967865, 767428711162, 975482736046]
+      - Type: Group
+        Name: Product C
+        Conditions:
+          - Equals: 618180337335
+```
+
+#### Scenario 2 - You want to create an environment dimension that cleans up your “env” tag
+
+After an  analysis in the CloudZero platform, you see that the “env” tag has the following values:
+
+* Production
+* production
+* producion
+* PROD
+* acme-prd
+* development
+* DEV
+* staging
+* stage
+* acme-staging
+* stg
+
+You might create the following CostFormation:
+
+```yaml
+  Environment:
+    Name: Environment
+    Rules:
+      - Type: Group
+        Name: Production
+        Conditions:
+          - Source: Tag:env
+            Equals:
+              - Production
+              - production
+              - producion
+              - PROD
+              - acme-prd
+      - Type: Group
+        Name: Staging
+        Conditions:
+          - Source: Tag:env
+            Equals:
+              - staging
+              - stage
+              - acme-staging
+              - stg
+      - Type: Group
+        Name: Development
+        Conditions:
+          - Source: Tag:env
+            Equals:
+              - development
+              - DEV
+```
+
+The CostFormation above can be optimized in 4 ways:
+
+1. If you find yourself referencing the same source over and over again, CostFormation allows you to define one source in the header section to be the default for the dimension
+2. Whenever you’re sourcing a tag, you often want to “transform” the tag values before evaluating them against some values (because tags represent user generated values…you can’t control the casing and values).  You can find the full documentation on transforms <a href="https://docs.cloudzero.com/docs/cfdl-reference#transforms" target="_blank">here.</a>
+3. Instead of using the “Equals” conditional, you can instead us the “Contains” conditional to make the logic more robust.  This might not work in every case depending on what your desired logic is, but for something like Environment it works well.
+4. Instead of listing multiple values on different lines, you can collapse these to “array notation” to make your CostFormation more readable.
+
+An optimized form of the dimension above would be:
+
+```yaml
+  Environment:
+    Name: Environment
+    Source: Tag:env
+    Transforms:
+      - Type: Lower
+    Rules:
+      - Type: Group
+        Name: Production
+        Conditions:
+          - Contains: prod
+      - Type: Group
+        Name: Staging
+        Conditions:
+          - Contains: [staging, stage, stg]
+      - Type: Group
+        Name: Development
+        Conditions:
+          - Contains: dev
+```
+
+### Exercises
+
+Before beginning the exercises, you should have VSCode and CloudZero’s extension installed and be Authenticated to the Platform.  For each exercise, you should use the extension's validation functionality to ensure you’re creating well formed CostFormation (you can validate by saving your file locally).  These exercises are somewhat contrived so that they will validate and publish in most customer’s environments.  Because environments are so varied, the results of publishing will be varied.  You may see the logic referencing things that don’t exist in your environment slightly smiling face 
+
+Note - If you have any questions about publishing your dimensions you can see the documentation <a href="https://docs.cloudzero.com/docs/publish-definitions#publishing-your-definitions" target="_blank">here.</a>
+
+#### Exercise 1 - You’re working with finance to help automate their Cost Per Customer reporting.  They give you a csv with the following mappings.  Create a “Customer” dimension for finance to use.
+
+<a href="https://downloads.cloudzero.com/documentation/resources/academy/customer_map.csv"> Customer\_Map.csv </a>
+
+**Exercise 1 Solutions** - 3 solutions are provided.  All are correct, but the optimized ones are optimized from a verbosity / readability perspective vs the other.  All would have the same performance profile within CloudZero.
+
+<a href="https://downloads.cloudzero.com/documentation/resources/academy/Group_Exercise1_NonOptimized.cz.yml"> Group\_Exercise1\_NonOptimized.cz.yml </a> 
+
+<a href="https://downloads.cloudzero.com/documentation/resources/academy/Group_Exercise1_Optimized.cz.yml"> Group\_Exercise1\_Optimized.cz.yml </a>
+
+<a href="<https://downloads.cloudzero.com/documentation/resources/academy/Group_Exercise1_Optimized_ServiceDisplay.cz.yml"> Group\_Exercise1\_Optimized\_ServiceDisplay.cz.yml </a>
+
 <br />
 
-# To consider
+#### Exercise 2 - Finance reviewed your dimensions and asked for the following changes to be made:
 
-## XML format related export rules
+* There was a mistake in the mappings and service microsoft.storage should really go to Customer = “Acme”
+* For service “AmazonEC2” (currently Customer = “Internal”)
+  * The “us-east-1” Region can be associated with customer = “Tesla”
+  * Everything else can stay with “Internal”
+* Everything that’s not associated with a customer should go to an element called “Shared”
 
-**Rule**: `&` and `<` have to be escaped using `&amp;` and  `&lt;` unless they are used as an escape sequence (e.g. ") or element tag (e.g., `<b>`); otherwise, the *XML* document is not well-formed!
+**Exercise 2 Solution** - The attached solution uses the optimized dimension above as a starting point.
 
-**Exception**: if a strings element contains HTML (e.g., `<u>`) the behavior depends on the **HTML export setting**:
-
-**RAW**: *HTML* tags will not be escaped at all; only the characters `&` and `<` will be escaped according to the rule above
-
-**ESCAPE**: all occurrences of `< `, `>` and `&` will be escaped, also for *HTML* tags
-
-**CDATA**: the content will be wrapped inside a `CDATA` section and no escaping using *XML* entities is done at all
-
-In case the content is already wrapped in a `CDATA` section during import, it will also be exported inside a `CDATA` section, irrespective of the *HTML* export setting!
+<a href="https://downloads.cloudzero.com/documentation/resources/academy/Group_Exercise2_Optimized.cz.yml">  Group\_Exercise2\_Optimized.cz.yml </a>
 
 <br />
 
-## Android related export rules
+#### Exercise 3 - Finance reviewed your results from Exercise 2 and asked for two final changes:
 
-* Whenever a single quote (‘) character is in the content, it has to be either escaped using `\'` or the whole string has to be quoted using double quotes (“)
-* The character double quote (“) itself has to be escaped using `\”`
-* For a quoted text like *”   this is some text   ”* no trimming will be done on import; the whitespace will also be contained in the exported file!
-* In case HTML tags (e.g. `<b>`, `<i>`, `<u>`) are present. They are handled according to the HTML export settings; however, if format strings (e.g. `%1$d`) are also present; all HTML tags will be escaped as if the option export setting.`ESCAPE` was selected!
-* If format strings are used, any other occurrences of “%” have to be escaped using the according unicode point representation `&#0025;`. Therefore, the percent sign will always be escaped if not used as format String (e.g., `“Save 50&#0025; only now!”`).\
-  Exception: if the XML attribute `formatted = “false”` is present on the element, no escaping of the percent sign is done!
-* The characters “@” and “?” are escaped with `\` if they are at the beginning of the content (or represent the only content) unless the whole string is quoted using double quotes (“) as well or they represent references (e.g., in the form `@string/keyName`)
-* Newlines are escaped using `\n`, Tabs are escaped using `\t`,\
-   the backslash character is escaped using `\\`
+* Everything in account `<INSERT ONE OF YOUR ACCOUNT IDs HERE>` should go to customer = “Apple”
+* They’d like to try and improve the coverage of the Customer dimension (i.e find additional spend that might belong to the customers).  Their idea was to search against the resource’s names for the Customer names.  If the Customer’s names exist anywhere in the resource’s names, then associate those resources with the Customer.
+  * For this exercise, let’s match against the Name tag and the values in resource summary
 
-## Additional export rules
+**Exercise 3 Solution** - The attached solution uses Exercise 2 as a starting point.
 
-* The rules under *“Android-related Export Rules”* are always applied even if the content is inside a `CDATA` section (either because it was imported that way or a `CDATA` section is created because the according HTML export option is selected)
-* In case the export option *“Escape Unicode Characters”* is selected in addition to the rules above, all non-ASCII characters will be replaced by the according unicode point representation as well
-* In case a non-Unicode encoding (e.g., ASCII) is selected, Unicode escaping will be done implicitly
-
-## Locale information
-
-In typical Android projects, these files do not need to have any locale information in the filename (a typical name is `strings.xml`). The locale information can be found in the path. Therefore, we always recommend using our SCM integration to synchronize your repository with LingoHub.\
-Otherwise, you must always specify the language in another step while importing this file.
+<a href="https://downloads.cloudzero.com/documentation/resources/academy/Group_Exercise3_Optimized.cz.yml"> Group\_Exercise3\_Optimized.cz.yml </a>
