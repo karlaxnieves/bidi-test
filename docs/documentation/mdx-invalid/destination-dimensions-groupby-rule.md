@@ -5,18 +5,21 @@ hidden: false
 metadata:
   robots: index
 ---
+<HTMLBlock>{`
+<iframe class=\"vidyard_iframe\" title=\"Dimensions Module - GroupBy Rule\" src=\"//play.vidyard.com/FtAru3qxpKZuUrzvS6aGFD.html?\" width=\"800\" height=\"400\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\" allowfullscreen referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+`}</HTMLBlock>
 
+<br />
 
+<br />
 
-
-## GroupBy Rule Overview 
+## GroupBy Rule Overview
 
 In many cases, customers have tag values they want to drive Dimension elements.  They don’t want to define the logic per element, they just want to use the values from the tag(s).  This is where the “GroupBy” rule is used.  “GroupBys” are generally used for 1 of 3 scenarios:
 
 1. To normalize the values in the tag using a CloudZero transform (see full Transform documentation <a href="https://docs.cloudzero.com/docs/cfdl-reference#transforms" target="_blank">here</a>).  Since tags represent user generated content, you often find different capitalizations and special characters used in the tag values.
 2. To collapse multiple tags into 1 Dimension a user would interact with.  Since tags represent user generated content, you often find multiple tag keys for the same concept: Environment, Environment, env, etc.
-3. [LESS COMMON] - To concatenate the values together from multiple sources
-
+3. \[LESS COMMON] - To concatenate the values together from multiple sources
 
 ### Scenarios
 
@@ -99,7 +102,7 @@ If you leave CoalesceSource: True off of your “GroupBy” rule or use Coalesce
 
 ### Exercises
 
-Before beginning the exercises, you should have VSCode and CloudZero’s extension installed and be Authenticated to the Platform.  For each exercise, you should use the extension's validation functionality to ensure you’re creating well formed CostFormation (you can validate by saving your file locally).  These exercises are somewhat contrived so that they will validate and publish in most customer’s environments.  Because environments are so varied, the results of publishing will be varied.  You may see the logic referencing things that don’t exist in your environment slightly smiling face 
+Before beginning the exercises, you should have VSCode and CloudZero’s extension installed and be Authenticated to the Platform.  For each exercise, you should use the extension's validation functionality to ensure you’re creating well formed CostFormation (you can validate by saving your file locally).  These exercises are somewhat contrived so that they will validate and publish in most customer’s environments.  Because environments are so varied, the results of publishing will be varied.  You may see the logic referencing things that don’t exist in your environment slightly smiling face
 
 Note - If you have any questions about publishing your dimensions you can see the documentation <a href="https://docs.cloudzero.com/docs/publish-definitions#publishing-your-definitions" target="_blank">here.</a>
 
@@ -113,12 +116,12 @@ You noticed you have 3 different product tags that you'd like to collapse into a
 
 **Exercise 1 Solution**
 
-<a href="https://downloads.cloudzero.com/documentation/resources/academy/GroupBy_Exercise1.cz.yml"> GroupBy_Exercise1.cz.yml </a>
+<a href="https://downloads.cloudzero.com/documentation/resources/academy/GroupBy_Exercise1.cz.yml"> GroupBy\_Exercise1.cz.yml </a>
 
 #### Exercise 2 - After building your product dimension, you realize that one of the products recently got renamed.  While there are a few examples of the correct name, most of the tagged values are the old, "bad", name.  You want to correct this in your CostFormation by renaming all the old values to the new value.
 
 For Exercise 2 and the "Product" dimension, let's assume the "old" product name was Acme and the "new' product name is "Pied Piper".  You can replace this with real examples if you're using tags from your infrastructure.
 
-**Exercise 2 Solution** 
+**Exercise 2 Solution**
 
-<a href="<https://downloads.cloudzero.com/documentation/resources/academy/GroupBy_Exercise2.cz.yml"> GroupBy_Exercise2_cz.yml </a>
+<a href="<https://downloads.cloudzero.com/documentation/resources/academy/GroupBy_Exercise2.cz.yml"> GroupBy\_Exercise2\_cz.yml </a>
