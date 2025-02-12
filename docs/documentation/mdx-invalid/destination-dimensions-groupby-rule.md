@@ -6,7 +6,7 @@ metadata:
   robots: index
 ---
 <HTMLBlock>{`
-<iframe class=\"vidyard_iframe\" title=\"Dimensions Module - GroupBy Rule\" src=\"//play.vidyard.com/FtAru3qxpKZuUrzvS6aGFD.html?\" width=\"800\" height=\"400\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\" allowfullscreen referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+<iframe class=\"vidyard_iframe\" title=\"Dimensions Module - GroupBy Rule\" src=\"//play.vidyard.com/FtAru3qxpKZuUrzvS6aGFD.html?\" width=\"800\" height=\"400\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\" allowfullscreen referrerpolicy=\"no-referrer-when-downgrade\"></iframe>
 `}</HTMLBlock>
 
 <br />
