@@ -6,15 +6,6 @@ metadata:
   robots: index
 ---
 
-***
-
-## GroupBy Rule Overview 
-
-In many cases, customers have tag values they want to drive Dimension elements.  They don’t want to define the logic per element, they just want to use the values from the tag(s).  This is where the “GroupBy” rule is used.  “GroupBys” are generally used for 1 of 3 scenarios:
-
-1. To normalize the values in the tag using a CloudZero transform (see full Transform documentation <a href="https://docs.cloudzero.com/docs/cfdl-reference#transforms" target="_blank">here</a>).  Since tags represent user generated content, you often find different capitalizations and special characters used in the tag values.
-2. To collapse multiple tags into 1 Dimension a user would interact with.  Since tags represent user generated content, you often find multiple tag keys for the same concept: Environment, Environment, env, etc.
-3. [LESS COMMON] - To concatenate the values together from multiple sources
 
 ### Scenarios
 
