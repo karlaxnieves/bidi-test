@@ -11,3 +11,11 @@ flowchart LR
  B --> C[fa:fa-check C] 
  B --> D[fa:fa-ban D]
 ```
+
+<HTMLBlock>{`
+<style>
+.markdown-body pre.mermaid_single {
+    background: white;
+}
+</style>
+`}</HTMLBlock>
