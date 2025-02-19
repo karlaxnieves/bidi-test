@@ -4,7 +4,7 @@ deprecated: false
 hidden: false
 link:
   new_tab: true
-  url: https://www.apollo.io/product/integrations
+  url: https://www.pryon.com
 metadata:
   robots: index
 ---
