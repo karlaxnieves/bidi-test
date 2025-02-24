@@ -13,8 +13,6 @@ This is a test string to be edited!
 
 <br />
 
-<Custom />
-
 <br />
 
 <HTMLBlock>{`
