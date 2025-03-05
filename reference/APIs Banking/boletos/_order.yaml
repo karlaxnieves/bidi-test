@@ -1,0 +1,5 @@
+- get_bank-slips
+- post_bank-slips
+- post_bank-slips-batches
+- put_bank-slips-bankslipid
+- delete_bank-slips-bankslipid

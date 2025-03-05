@@ -1,0 +1,5 @@
+- getlocations
+- post_companies-companyid-pix-cash-in-locations
+- delete_companies-companyid-pix-cash-in-locations-locationid
+- get_companies-companyid-pix-cash-in-instant-collections
+- post_companies-companyid-pix-cash-in-instant-collections

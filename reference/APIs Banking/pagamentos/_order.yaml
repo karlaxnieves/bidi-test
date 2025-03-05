@@ -1,0 +1,8 @@
+- get_companies-companyid-payments
+- post_companies-companyid-payments
+- get_companies-companyid-payments-bankslips
+- cancelpendingapprovalpayments
+- get_companies-companyid-payments-approvals
+- get_companies-companyid-payments-paymentid
+- delete_companies-companyid-payments-paymentid
+- get_companies-companyid-payments-paymentid-receipt
