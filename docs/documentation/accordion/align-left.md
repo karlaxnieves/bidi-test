@@ -27,6 +27,12 @@ To open settings, click settings.
 
 <br />
 
+<br />
+
+<br />
+
+<br />
+
 ## User settings
 
 ### My profile
