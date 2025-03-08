@@ -27,7 +27,7 @@ To open settings, click settings.
 
 <br />
 
-\</br>&#x20;
+<br />
 
 ## User settings
 
