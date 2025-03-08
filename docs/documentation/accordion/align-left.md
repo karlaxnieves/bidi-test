@@ -31,7 +31,7 @@ To open settings, click settings.
 
 <br />
 
-<br />
+\</br>
 
 ## User settings
 
