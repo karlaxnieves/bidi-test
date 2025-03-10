@@ -14,9 +14,3 @@ metadata:
     Long-lived keys supported on select endpoints that don't access customer-specific data, such as getting People or Company data and analysis.
   </Card>
 </Cards>
-
-<HTMLBlock>{`
-<style>
-[data-color-mode="dark"] .CardsGrid .Card-icon {color: pink;}
-</style>
-`}</HTMLBlock>
