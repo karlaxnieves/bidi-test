@@ -7,6 +7,17 @@ metadata:
 ---
 To open settings, click settings.
 
+<HTMLBlock>{`
+ <style>
+   
+   img.img-align-left {
+   float: none;
+ }
+   
+</style>
+`}</HTMLBlock>
+
+<br />
 
 <Image align="left" src="https://files.readme.io/0d9664cdd4cac49d4e55f0598392d6559de4ca42c18e2c6d9b6866cc67377f8e-Settings.png" />
 
