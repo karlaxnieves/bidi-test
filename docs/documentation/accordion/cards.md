@@ -5,21 +5,13 @@ hidden: false
 metadata:
   robots: index
 ---
-<Cards columns={4}>
-  <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
-    Neque porro quisquam est qui dolorem ipsum quia
+<Cards columns={2}>
+  <Card title="OAuth Access Tokens" icon="fa-shield">
+    Supported on ALL endpoints and required for any call that accesses customer-specific data. Require frequent renewal (every 15 minutes).
   </Card>
 
-  <Card title="Second Card" icon="fa-user">
-    *Lorem ipsum dolor sit amet, consectetur adipiscing elit*
-  </Card>
-
-  <Card title="Third Card" icon="fa-star">
-    > Ut enim ad minim veniam, quis nostrud ullamco
-  </Card>
-
-  <Card title="Fourth Card" icon="fa-question">
-    **Excepteur sint occaecat cupidatat non proident**
+  <Card title="API Keys" icon="fa-key">
+    Long-lived keys supported on select endpoints that don't access customer-specific data, such as getting People or Company data and analysis.
   </Card>
 </Cards>
 
