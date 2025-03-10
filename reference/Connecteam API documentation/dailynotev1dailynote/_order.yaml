@@ -1,0 +1,3 @@
+- get_note_daily_info_v1_daily_note__noteid__get
+- update_note_daily_info_v1_daily_note__noteid__put
+- delete_note_daily_info_v1_daily_note__noteid__delete

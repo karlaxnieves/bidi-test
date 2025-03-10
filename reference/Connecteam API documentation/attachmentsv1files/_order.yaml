@@ -1,0 +1,3 @@
+- generate_upload_url_attachments_v1_files_generate_upload_url_post
+- finalize_upload_attachments_v1_files_complete_upload__fileid__put
+- get_file_url_attachments_v1_files__fileid__get

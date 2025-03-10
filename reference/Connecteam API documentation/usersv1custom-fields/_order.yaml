@@ -1,0 +1,4 @@
+- get_custom_fields_users_v1_custom_fields_get
+- update_custom_fields_users_v1_custom_fields_put
+- create_custom_fields_users_v1_custom_fields_post
+- delete_custom_fields_users_v1_custom_fields_delete

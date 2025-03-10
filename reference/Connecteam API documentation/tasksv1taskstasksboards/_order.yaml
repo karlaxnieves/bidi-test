@@ -1,0 +1,4 @@
+- update_task_tasks_v1_taskboards__taskboardid__tasks__taskid__put
+- delete_task_tasks_v1_taskboards__taskboardid__tasks__taskid__delete
+- get_tasks_tasks_v1_taskboards__taskboardid__tasks_get
+- create_task_tasks_v1_taskboards__taskboardid__tasks_post

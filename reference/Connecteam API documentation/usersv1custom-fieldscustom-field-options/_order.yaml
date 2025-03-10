@@ -1,0 +1,6 @@
+- get_custom_field_options_users_v1_custom_fields__customfieldid__options_get
+- create_custom_field_option_users_v1_custom_fields__customfieldid__options_post
+- >-
+  edit_custom_field_option_users_v1_custom_fields__customfieldid__options__optionid__put
+- >-
+  delete_custom_field_option_users_v1_custom_fields__customfieldid__options__optionid__delete

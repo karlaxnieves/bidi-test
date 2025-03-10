@@ -1,0 +1,6 @@
+- >-
+  get_time_activities_time_clock_v1_time_clocks__timeclockid__time_activities_get
+- >-
+  update_time_activities_time_clock_v1_time_clocks__timeclockid__time_activities_put
+- >-
+  create_time_activities_time_clock_v1_time_clocks__timeclockid__time_activities_post
