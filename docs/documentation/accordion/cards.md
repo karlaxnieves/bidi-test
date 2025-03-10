@@ -22,3 +22,9 @@ metadata:
     **Excepteur sint occaecat cupidatat non proident**
   </Card>
 </Cards>
+
+<HTMLBlock>{`
+<style>
+[data-color-mode="dark"] .CardsGrid .Card-icon {color: pink;}
+</style>
+`}</HTMLBlock>
