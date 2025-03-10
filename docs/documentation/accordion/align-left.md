@@ -11,7 +11,7 @@ To open settings, click settings.
  <style>
    
    img.img-align-left {
-   float: none;
+   float: none !important;
  }
    
 </style>
