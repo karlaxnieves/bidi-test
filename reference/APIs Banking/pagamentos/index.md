@@ -1,4 +1,0 @@
----
-title: Pagamentos
-hidden: false
----
