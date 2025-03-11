@@ -1,4 +1,0 @@
----
-title: Clubs
-hidden: false
----
