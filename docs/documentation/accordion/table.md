@@ -1,0 +1,66 @@
+---
+title: table
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+| Field Name | Usage | Example Values |
+| :------| :-----------------------------| :---------------|
+| `provider.accepting_new_patients`|Whether or not a provider accepts new patients.|true, false|
+| `provider.additional_visit_types` | Any additional visit types that are not already specified in `provider.appointment_ehr_purposes.ehr_data.visit_method`. | Telehealth |
+| `provider.age_groups_seen` | The categories of age groups seen by a provider.| Adults, Geriatrics, Pediatrics |
+| `provider.aha_id` | The 7-digit American Hospital Association (AHA) hospital identifier.| 6789432 |
+| `provider.appointment_ehr_purposes.name` | The patient-friendly description of an appointment purpose.| Checkup |
+| `provider.appointment_ehr_purposes.patient_relationship` | The patient’s relationship to the provider.| new, established |
+| `provider.appointment_ehr_purposes.ehr_data.visibilities.consumer` | Indicates how an appointment purpose displays in Search. Any appointment purpose may be hidden from users, used only for purposes of calculating availability, or bookable via Schedule. (Note that in this field, `ehr_data` must be included in the path.) | hidden, availability_only, and direct_book. |
+| `provider.appointment_ehr_purposes.visit_method` | Indicates if an appointment purpose is for an in-person, video, or phone visit. (Note that in this field, `ehr_data` must be omitted from the path.) | in-person |
+| `provider.care_team`| Custom field. Search for any care teams that a provider is part of. (If one provider is unavailable, a user may be able to book appointments with other providers on the same care team.) |Chronic Cough, Interstitial Lung Disease, Chronic Bronchitis |
+| `provider.clinical_keywords.promoted.name` | Search for providers by a promoted clinical keyword in their profile. | bradycardia |
+| `provider.clinical_keywords.searchable.name` | Search for providers by a clinical keyword in their profile. | atrial fibrillation |
+| `provider.direct_book_capable`|Whether or not appointments with a provider can be booked using PMC DirectBook.|true, false |
+| `provider.ehr_platform`| The name of the EHR.| Epic |
+| `provider.entity_type`|An entity is a top-level data object in your Kyruus Connect data. The currently supported entity types are `provider` and `location`. |provider, location |
+| `provider.external_id`|An identifier for the provider that comes from a system external to Kyruus Connect. The value is typically the id in the provider’s EHR system or a credentialing system.|52789, 5123|
+| `provider.gender`|Search for providers with the specified gender.|Female, Male, Non-binary |
+| `provider.has_video_url`|Indicates whether the provider has a personal video stored in `provider.video_url`. | true, false |
+| `provider.hospital_affiliations`|Contains information about which health care networks a provider is affiliated with. Providers can be associated with a provider network, a hospital network, and a health care network. | Broadway Memorial Hospital |
+| `provider.id`|The identifier of a provider that is assigned by Kyruus Connect. This is an important and commonly used identifier for linking and referencing provider content. |1650917, 1636725 |
+| `provider.insurance_accepted` | The name of insurance accepted by a provider. | Aetna, BCBS, Broadway Health Plan |
+| `provider.is_primary_care`|Whether a provider is a primary care physician or not. |true, false |
+| `provider.is_specialty_care`|Whether a provider is a specialist or not. |true, false |
+| `provider.languages`|Search for providers who speak the specified language.| Spanish, English, Chinese - Mandarin |
+| `provider.lgbtq_inclusive`|Indicates whether the provider is inclusive to lgbtq patients.| true, false |
+| `provider.marketing_campaign_name`|Custom field. Search for any marketing campaigns that a provider is a part of. (A user may be able to book appointments with any provider participating in the campaign.) | Breast Cancer Awareness Month |
+| `provider.metadata.provider_last_modified` |A timestamp of the last time a provider’s profile was modified using Kyruus Connect - Administrator. This field is typically filtered using a `lte` or `gte` operator and a timestamp value, for example, `filter=provider.metadata.provider_last_modified.lte:2022-04-18T12:45:40.000Z`. | 2022-04-18T12:45:40.000Z |
+| `provider.metadata.provider_last_updated` |A timestamp of the last time Kyruus Connect indexed a provider’s profile. | 2022-04-18T12:45:40.000Z |
+| `provider.name` |A provider's full name. Note that names are typically unique and aggregate into a flat list of unique values. | Beverly Abrahamson, Carlton Adams, Damon Armstrong |
+| `provider.near_term_availability` | Indicates that a provider has availability within three days. | Near-Term Availability |
+| `provider.networks` | The network membership of a provider. | Preferred Network |
+| `provider.network_affiliations.name` | The network affiliations of a provider. | Broadway Memorial Hospital |
+| `provider.network_affiliations.type` | The type of network affiliations of a provider. | Hospital |
+| `provider.new_pt_online_booking` | Deprecated. Indicates whether the provider accepts new patients for online booking. | true, false |
+| `provider.night_weekend_availability` | Indicates whether the provider has availability on nights and weekends. |true, false|
+| `provider.npi` | The national provider identifier of a provider. |9993798013 |
+| `provider.open_scheduling` | Indicates that a provider is open and available for online scheduling. |true, false |
+| `provider.pmc_db_only_provider_flag` | Custom field. Indicates whether a provider is available only in DirectBook and not in PMC for searching. |true, false |
+| `provider.practice_groups.name` | The name of the practice group that a provider belongs to. | Broadway Cancer Center, Broadway Family Medicine, Broadway Medical Group |
+| `provider.provider_is_employed`| Employed by the health system rather than an affiliate provider. | true, false |
+| `provider.provider_organizations` | This is an organizational grouping defined by a customer, such as network name, employment status, etc. | Broadway Physicians Network |
+| `provider.provider_type` | The type of medical provider. | Physician, Nurse Practitioner (NP) |
+| `provider.region` | A large geographical grouping. For example, this could be a collection of cities or a collection of states (such as Northeast). |Quad Cities |
+| `provider.service_line` | Search for service lines that a provider is part of. (This is used to build service lines pages that include a combination of related specialties or other custom groupings.) | Emergency Medicine, Urology, Ophthalmology |
+| `provider.show_in_pmc` | Indicates that a provider displays in PMC and is searchable in PMC. |Yes, No |
+| `provider.specialties.name` | Search for providers with a specific specialty. |Cardiology, Electrophysiology |
+| `provider.subspecialties.name` | Search for providers with a specific subspecialty. |Diabetes |
+| `provider.telehealth` | Whether the provider accepts telehealth appointments. |true, false |
+| `provider.walkins_welcome` | Indicates whether a provider accepts walkin patients. |true, false |
+| `locations.associated_marketable_location_ids` | Search for providers in a hierarchy of associated marketable locations. | LOC0000002335 |
+| `locations.commercial_entity_name`| Search by the name for a group of practice locations. For example, a number of departments or floors in a location might be grouped into entity name such as Pediatrics.| Pediatrics |
+| `locations.external_id`| Search for providers at a practice location by a location ID that comes a system external to Kyruus Connect. The value is typically the practice location ID in an EHR system. | 21304876 |
+| `locations.id`| Search for providers at a practice location by the location's Kyruus Connect ID. | 2383276 |
+| `locations.name`| Search for providers by the name of the practice location.| Acme Hospital, Broadway Cardiology Clinic, Broadway Hospital |
+| `locations.primary_marketable_location_id` | Search for providers who practice at a location that is linked to a specified marketable location. For example, `filter=locations.primary_marketable_location_id:LOC0000102759` returns the list of providers who practice at a location that is linked to the marketable location LOC0000102759. | LOC0000102759 |
+| `locations.state` | Search for providers in a specific state. | MA, OH, NY |
+| `locations.city`| Search for providers with locations in the specified city.| Boston, Cleveland |
+| `locations.zip`| Search for providers with locations in the specified zip code.| 44113 |
