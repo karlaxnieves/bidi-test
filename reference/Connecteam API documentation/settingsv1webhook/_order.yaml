@@ -1,5 +1,0 @@
-- get_webhook_settings_v1_webhooks__webhookid__get
-- update_webhook_settings_v1_webhooks__webhookid__put
-- delete_webhook_settings_v1_webhooks__webhookid__delete
-- get_webhooks_by_type_settings_v1_webhooks_get
-- create_webhook_settings_v1_webhooks_post

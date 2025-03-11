@@ -1,5 +1,0 @@
-- get_conversations_chat_v1_conversations_get
-- >-
-  send_message_to_conversation_chat_v1_conversations__conversationid__message_post
-- >-
-  send_message_to_private_conversation_chat_v1_conversations_privatemessage__userid__post
