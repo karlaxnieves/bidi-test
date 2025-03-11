@@ -1,5 +1,5 @@
 ---
-title: New Endpoint
+title: Posts
 excerpt: This is your first endpoint! Edit this page to start documenting your API.
 api:
   file: read-me-new-refactored-ui.json
