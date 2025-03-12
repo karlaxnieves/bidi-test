@@ -7,14 +7,14 @@ metadata:
 ---
 O acesso à API de transferências é realizado através de requisições para os endpoints que ramificam do endpoint base `/v1/companies/`{`companyId`}`/transfers`. As páginas que detalham cada operação indicarão se há a possibilidade de filtragem por meio de `query paramethers` e quais serão esses parametros.
 
-| Endpoint                                                           | Descrição                                               | Verbos      |
-| ------------------------------------------------------------------ | ------------------------------------------------------- | ----------- |
-| `/v1/companies/`{`companyId`}`/transfers`                          | Inicia e lista transferências                           | POST, GET   |
-| `/companies/`{`companyId`}`/transfers/schedule`                    | Obtém a lista de transferências agendadas               | GET         |
-| `/v1/companies/`{`companyId`}`/transfers/approvals/``{approvalId}\`` | Cancela uma pendência por um Id.                        | DELETE      |
-| `v1/companies/`{`companyId`}`/transfers/approvals`                 | Obtém a lista de transferências pendentes de aprovação. | GET         |
-| `v1/companies/`{`companyId`}`/transfers/``{transferId}\``            | Cancela e lista uma transferência especifica            | DELETE, GET |
-| `v1/companies/`{`companyId`}`/transfers/``{transferId}\```/receipt`  | Obtém o PDF do comprovante em base64                    | GET         |
+| Endpoint                                                            | Descrição                                               | Verbos      |
+| ------------------------------------------------------------------- | ------------------------------------------------------- | ----------- |
+| `/v1/companies/`{`companyId`}`/transfers`                           | Inicia e lista transferências                           | POST, GET   |
+| `/companies/`{`companyId`}`/transfers/schedule`                     | Obtém a lista de transferências agendadas               | GET         |
+| `/v1/companies/`{`companyId`}\`/transfers/approvals/`{approvalId}\` | Cancela uma pendência por um Id.                        | DELETE      |
+| `v1/companies/`{`companyId`}`/transfers/approvals`                  | Obtém a lista de transferências pendentes de aprovação. | GET         |
+| `v1/companies/`{`companyId`}\`/transfers/`{transferId}\`            | Cancela e lista uma transferência especifica            | DELETE, GET |
+| `v1/companies/`{`companyId`}`/transfers/``{transferId}\```/receipt` | Obtém o PDF do comprovante em base64                    | GET         |
 
 Corpo da `transferência`
 
