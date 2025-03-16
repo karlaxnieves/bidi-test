@@ -378,3 +378,5 @@ metadata:
 
   <Accordion title="Host, host.operating_system" icon="fa-info-circle" />
 </Accordion>
+
+[Source](https://www.linkedin.com/in/hilzfuld/)
