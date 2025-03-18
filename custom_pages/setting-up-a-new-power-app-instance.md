@@ -32,7 +32,7 @@ hidden: false
 | Region                          | Choose the region that is closest to your office                   |
 | Get New Features Early          | No                                                                 |
 | Type                            | Production or Sandbox (if creating a test/development environment) |
-| Add a Dataverse Store           | Yes **important!**                                                 |
+| Add a Dataverse Store           | Yes **<span style={{color: "red"}}>important!</span>**             |
 | Pay-As-You-Go with Azure        | No                                                                 |
 
 5. On the next screen, in the relevant details. Ensure that specify a custom URL for your organization.
