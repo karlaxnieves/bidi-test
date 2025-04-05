@@ -4,7 +4,7 @@ api:
   file: read-me-new-refactored-ui.json
   operationId: post_posts
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
